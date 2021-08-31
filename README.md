@@ -1,2 +1,2 @@
 # SNotes
-Simple Note app for android
+Android app to bookmark and view GitHub repositories.
