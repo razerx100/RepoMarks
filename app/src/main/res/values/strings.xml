@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SNotes</string>
+    <string name="app_name">RepoMarks</string>
     <string name="editor_hint">Write Note</string>
     <string name="title_hint">Write Title</string>
     <string name="action_done">Done</string>

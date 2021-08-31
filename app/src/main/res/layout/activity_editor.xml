@@ -63,8 +63,8 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:backgroundTint="@color/colorAccent"
-        android:src="@android:drawable/ic_menu_delete"
         android:onClick="delete_note"
-        />
+        android:src="@android:drawable/ic_menu_delete"
+        app:maxImageSize="36dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
