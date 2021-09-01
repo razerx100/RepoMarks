@@ -33,8 +33,7 @@ public class MynotesRecyclerViewAdapter extends RecyclerView.Adapter<MynotesRecy
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).title);
-        Timestamp timestamp = new Timestamp(mValues.get(position).date);
-        holder.mContentView.setText(timestamp.toString());
+        holder.mContentView.setText(mValues.get(position).content);
     }
 
     @Override
