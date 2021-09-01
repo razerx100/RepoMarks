@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import com.example.snotes.databinding.FragmentItemListBinding;
 public class notesFragment extends Fragment implements MynotesRecyclerViewAdapter.OnNoteListener {
     private FragmentItemListBinding binding;
     public static final String TAG = "com.example.snotes.MOISTURE";
-    public static final String EDIT_TAG = "com.example.snotes.DROUGHT";
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
     private NotesContent notesContent;
@@ -66,10 +64,9 @@ public class notesFragment extends Fragment implements MynotesRecyclerViewAdapte
 
     @Override
     public void onNoteClick(int position) {
-        Intent intent = new Intent(getActivity(), EditorActivity.class);
+        Intent intent = new Intent(getActivity(), ReaderActivity.class);
         String[] title_and_content = { notesContent.ITEMS.get(position).title, notesContent.ITEMS.get(position).content };
         intent.putExtra(TAG, title_and_content);
-        intent.putExtra(EDIT_TAG, true);
         startActivity(intent);
     }
 

@@ -2,6 +2,8 @@
     <string name="app_name">RepoMarks</string>
     <string name="editor_hint">Repository name</string>
     <string name="title_hint">Repository owner\'s name</string>
+    <string name="reader_hint">Code</string>
+    <string name="reader_title_hint">File Name</string>
     <string name="action_done">Done</string>
     <string name="action_sort_alph">Sort Alphabetically</string>
     <string name="action_sort_date">Sort by Date</string>

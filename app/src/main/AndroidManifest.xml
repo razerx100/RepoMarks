@@ -11,6 +11,8 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".EditorActivity"
             android:parentActivityName=".MainActivity"/>
+        <activity android:name=".ReaderActivity"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

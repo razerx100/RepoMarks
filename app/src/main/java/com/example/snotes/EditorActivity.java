@@ -11,16 +11,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.snotes.databinding.ActivityEditorBinding;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 public class EditorActivity extends AppCompatActivity {
     private ActivityEditorBinding binding;
-    private boolean edit_note;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,25 +29,6 @@ public class EditorActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-
-        accept_incoming_data();
-    }
-
-    public void accept_incoming_data(){
-        Intent intent = getIntent();
-        FloatingActionButton fab = binding.fabDelete;
-        fab.setEnabled(false);
-        fab.setVisibility(View.INVISIBLE);
-        if(intent.hasExtra(notesFragment.TAG)) {
-            String[] title_and_content = intent.getStringArrayExtra(notesFragment.TAG);
-            TextView content_editor = binding.textEditor;
-            TextView title_editor = binding.titleEditor;
-            content_editor.setText(title_and_content[1]);
-            title_editor.setText(title_and_content[0]);
-            fab.setEnabled(true);
-            fab.setVisibility(View.VISIBLE);
-        }
-        edit_note = !intent.hasExtra(notesFragment.EDIT_TAG);
     }
 
     @Override
@@ -66,11 +44,7 @@ public class EditorActivity extends AppCompatActivity {
             String title = binding.titleEditor.getText().toString();
             String content = binding.textEditor.getText().toString();
             if(title.isEmpty()){
-                Snackbar snackbar = Snackbar.make(binding.getRoot(), "Please provide a title", BaseTransientBottomBar.LENGTH_SHORT);
-                snackbar.show();
-            }
-            else if(DataManager.isNameExist(title, this) && edit_note){
-                Snackbar snackbar = Snackbar.make(binding.getRoot(), "Note with same title already exists!", BaseTransientBottomBar.LENGTH_SHORT);
+                Snackbar snackbar = Snackbar.make(binding.getRoot(), "Please provide an Owner's name", BaseTransientBottomBar.LENGTH_SHORT);
                 snackbar.show();
             }
             else {
@@ -82,11 +56,6 @@ public class EditorActivity extends AppCompatActivity {
         else {
             return super.onOptionsItemSelected(item);
         }
-    }
-
-    public void delete_note(View view){
-        DataManager.delete_file(this, binding.titleEditor.getText().toString().trim());
-        go_back_to_main();
     }
 
     private void go_back_to_main(){
