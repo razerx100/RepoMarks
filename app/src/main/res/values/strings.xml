@@ -5,6 +5,6 @@
     <string name="reader_hint">Code</string>
     <string name="reader_title_hint">File Name</string>
     <string name="action_done">Done</string>
-    <string name="action_sort_alph">Sort Alphabetically</string>
-    <string name="action_sort_date">Sort by Date</string>
+    <string name="action_sort_owner">Sort by owner\'s name</string>
+    <string name="action_sort_repo">Sort by repo name</string>
 </resources>

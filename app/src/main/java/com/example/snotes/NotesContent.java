@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class NotesContent {
@@ -47,10 +48,10 @@ public class NotesContent {
             }
         };
 
-        public static Comparator<NoteItem> NoteDate = new Comparator<NoteItem>() {
+        public static Comparator<NoteItem> NoteRepo = new Comparator<NoteItem>() {
             @Override
             public int compare(NoteItem noteItem, NoteItem t1) {
-                return t1.date.compareTo(noteItem.date);
+                return noteItem.content.toLowerCase().compareTo(t1.content.toLowerCase());
             }
         };
 

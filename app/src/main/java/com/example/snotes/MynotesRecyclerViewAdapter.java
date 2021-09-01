@@ -75,7 +75,7 @@ public class MynotesRecyclerViewAdapter extends RecyclerView.Adapter<MynotesRecy
             Collections.sort(mValues, NotesContent.NoteItem.NoteTitle);
         }
         else{
-            Collections.sort(mValues, NotesContent.NoteItem.NoteDate);
+            Collections.sort(mValues, NotesContent.NoteItem.NoteRepo);
         }
     }
 }
