@@ -9,23 +9,13 @@ import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class DataManager {
-    private static void add_date(String name, Context context){
-        try{
-            FileOutputStream fos = context.openFileOutput(name + "_date", Context.MODE_PRIVATE);
-            String date_in_ms = Long.toString(new Date().getTime());
-            fos.write(date_in_ms.getBytes());
-        }
-        catch (Exception e) {}
-    }
     public static void save_data(String content, String name, Context context){
         try{
             FileOutputStream fos = context.openFileOutput(name, Context.MODE_PRIVATE);
             fos.write(content.getBytes());
-            add_date(name, context);
         }
         catch (Exception e){}
     }
@@ -47,9 +37,6 @@ public class DataManager {
             content = stringBuilder.toString();
         }
         return content.trim();
-    }
-    public static Long get_date_in_ms(String name, Context context){
-        return Long.parseLong(get_data(name + "_date", context));
     }
     public static List<String> get_all_files_name(Context context){
         String[] all_file_names = context.fileList();
