@@ -1,6 +1,7 @@
 package com.example.snotes;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -9,13 +10,17 @@ import java.util.List;
 public class NotesContent {
     public final List<NoteItem> ITEMS = new ArrayList<NoteItem>();
 
-    //Update with Date/Alphabetize name sorting functions
+    public NotesContent(Context context) {
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                List<RepositoryEntity> entities = NameDBSingelton.GetDB().getRepoDao().GetAll();
 
-    public NotesContent(Context context){
-        List<String> names = DataManager.get_all_files_name(context);
-        for (String name : names) {
-            addItem(createNoteItem(name, DataManager.get_data(name, context)));
-        }
+                for (RepositoryEntity entity : entities) {
+                    addItem(createNoteItem(entity.ownersName, entity.repositoryName));
+                }
+            }
+        });
     }
 
     private void addItem(NoteItem item) {
