@@ -8,17 +8,25 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.snotes.databinding.ActivityEditorBinding;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.json.JSONObject;
+
 public class EditorActivity extends AppCompatActivity {
     private ActivityEditorBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,21 +50,16 @@ public class EditorActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.done_action){
-            String title = binding.titleEditor.getText().toString();
-            String content = binding.textEditor.getText().toString();
-            if(title.isEmpty()){
+            String title = FormatData(binding.titleEditor.getText());
+            String content = FormatData(binding.textEditor.getText());
+
+            if(title.isEmpty() || content.isEmpty()){
                 Snackbar snackbar = Snackbar.make(binding.getRoot(), "Please provide an Owner's name", BaseTransientBottomBar.LENGTH_SHORT);
                 snackbar.show();
             }
-            else {
-                AsyncTask.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        NameDBSingelton.GetDB().getRepoDao().InsertEntity(title, content);
-                    }
-                });
-                go_back_to_main();
-            }
+            else
+                CheckRepoAndOwner();
+
             return true;
         }
         else {
@@ -67,5 +70,45 @@ public class EditorActivity extends AppCompatActivity {
     private void go_back_to_main(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    private String FormatData(Editable editable) {
+        return editable.toString().trim();
+    }
+
+    private void CheckRepoAndOwner() {
+        String url = "https://api.github.com/repos/"
+                + FormatData(binding.titleEditor.getText()) + "/"
+                + FormatData(binding.textEditor.getText());
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        AsyncTask.execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                NameDBSingelton.GetDB().getRepoDao().InsertEntity(
+                                        FormatData(binding.titleEditor.getText()),
+                                        FormatData(binding.textEditor.getText())
+                                );
+                            }
+                        });
+
+                        go_back_to_main();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Snackbar snackbar = Snackbar.make(binding.getRoot(),
+                                "Owner or Repository doesn't exist.", BaseTransientBottomBar.LENGTH_SHORT);
+                        snackbar.show();
+                    }
+                }
+        );
+
+        NetworkManagerSingleton.Get().AddToRequestQueue(jsonObjectRequest);
     }
 }

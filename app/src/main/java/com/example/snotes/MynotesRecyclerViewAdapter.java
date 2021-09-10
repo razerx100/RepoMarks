@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.List;
 
