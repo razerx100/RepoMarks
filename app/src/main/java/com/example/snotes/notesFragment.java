@@ -64,10 +64,10 @@ public class notesFragment extends Fragment implements MynotesRecyclerViewAdapte
 
     @Override
     public void onNoteClick(int position) {
-        Intent intent = new Intent(getActivity(), ReaderActivity.class);
-        String[] title_and_content = { notesContent.ITEMS.get(position).title, notesContent.ITEMS.get(position).content };
-        intent.putExtra(TAG, title_and_content);
-        startActivity(intent);
+//        Intent intent = new Intent(getActivity(), ReaderActivity.class);
+//        String[] title_and_content = { notesContent.ITEMS.get(position).title, notesContent.ITEMS.get(position).content };
+//        intent.putExtra(TAG, title_and_content);
+//        startActivity(intent);
     }
 
     public void update_list(int option){

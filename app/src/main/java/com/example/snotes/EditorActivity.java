@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -37,7 +38,10 @@ public class EditorActivity extends AppCompatActivity {
         Toolbar toolbar = binding.toolbarEditor;
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
+        try {
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
+        catch (NullPointerException e) {}
     }
 
     @Override
@@ -50,11 +54,13 @@ public class EditorActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.done_action){
+            HideKeyboard();
+
             String title = FormatData(binding.titleEditor.getText());
             String content = FormatData(binding.textEditor.getText());
 
             if(title.isEmpty() || content.isEmpty()){
-                Snackbar snackbar = Snackbar.make(binding.getRoot(), "Please provide an Owner's name", BaseTransientBottomBar.LENGTH_SHORT);
+                Snackbar snackbar = Snackbar.make(binding.getRoot(), "Please provide an Owner's and a repo name", BaseTransientBottomBar.LENGTH_SHORT);
                 snackbar.show();
             }
             else
@@ -110,5 +116,13 @@ public class EditorActivity extends AppCompatActivity {
         );
 
         NetworkManagerSingleton.Get().AddToRequestQueue(jsonObjectRequest);
+    }
+
+    private void HideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        try {
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+        catch (NullPointerException e) {}
     }
 }
