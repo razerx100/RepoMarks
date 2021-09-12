@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         maintain_title();
     }
+
     public void launch_editor_activity(View view){
         Intent intent = new Intent(this, EditorActivity.class);
         startActivity(intent);

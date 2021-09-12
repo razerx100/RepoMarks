@@ -13,6 +13,8 @@
         <activity android:name=".EditorActivity"
             android:parentActivityName=".MainActivity"/>
         <activity android:name=".ReaderActivity"
+            android:parentActivityName=".RepoDetailsActivity"/>
+        <activity android:name=".RepoDetailsActivity"
             android:parentActivityName=".MainActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>

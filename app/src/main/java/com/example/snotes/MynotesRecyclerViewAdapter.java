@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
+import com.example.snotes.databinding.FragmentItemBinding;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;

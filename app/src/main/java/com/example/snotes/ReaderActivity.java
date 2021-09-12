@@ -42,16 +42,4 @@ public class ReaderActivity extends AppCompatActivity {
             title_editor.setText(title_and_content[0]);
         }
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.reader_toolbar_buttons, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        return super.onOptionsItemSelected(item);
-    }
 }

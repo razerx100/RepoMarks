@@ -30,8 +30,8 @@
                 android:theme="?attr/actionBarTheme" />
 
             <fragment
-                android:id="@+id/notes_fragment"
-                android:name="com.example.snotes.notesFragment"
+                android:id="@+id/repo_fragment"
+                android:name="com.example.snotes.repoFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
