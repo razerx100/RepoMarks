@@ -95,7 +95,7 @@ public class EditorActivity extends AppCompatActivity {
                         AsyncTask.execute(new Runnable() {
                             @Override
                             public void run() {
-                                NameDBSingelton.GetDB().getRepoDao().InsertEntity(
+                                NameDBSingleton.GetDB().getRepoDao().InsertEntity(
                                         FormatData(binding.titleEditor.getText()),
                                         FormatData(binding.textEditor.getText())
                                 );

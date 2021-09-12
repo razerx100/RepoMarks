@@ -10,9 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-
-import com.example.snotes.databinding.FragmentItemBinding;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -51,7 +48,7 @@ public class MynotesRecyclerViewAdapter extends RecyclerView.Adapter<MynotesRecy
                 AsyncTask.execute(new Runnable() {
                     @Override
                     public void run() {
-                        NameDBSingelton.GetDB().getRepoDao().DeleteEntity(
+                        NameDBSingleton.GetDB().getRepoDao().DeleteEntity(
                                 mValues.get(pos).title,
                                 mValues.get(pos).content
                         );

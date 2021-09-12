@@ -63,8 +63,10 @@ public class notesFragment extends Fragment implements MynotesRecyclerViewAdapte
     @Override
     public void onNoteClick(int position) {
         Intent intent = new Intent(getActivity(), RepoDetailsActivity.class);
-        String[] title_and_content = { notesContent.ITEMS.get(position).title, notesContent.ITEMS.get(position).content };
-        intent.putExtra(TAG, title_and_content);
+        String baseRepoPath = notesContent.ITEMS.get(position).title +
+                "/" + notesContent.ITEMS.get(position).content;
+        String[] baseAndFileName = {baseRepoPath, ""};
+        intent.putExtra(TAG, baseAndFileName);
         startActivity(intent);
     }
 

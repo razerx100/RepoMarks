@@ -7,16 +7,6 @@ import java.util.List;
 
 @Dao
 public interface RepoDao {
-    @Query("SELECT * FROM repository_entity WHERE owners_name LIKE :ownersName")
-    List<RepositoryEntity> GetByOwnersName(String ownersName);
-
-    @Query("SELECT * FROM repository_entity WHERE repository_name LIKE :repoName")
-    List<RepositoryEntity> GetByRepoName(String repoName);
-
-    @Query("SELECT * FROM repository_entity WHERE repository_name LIKE :repoName And " +
-            "owners_name LIKE :ownersName")
-    List<RepositoryEntity> GetByOwnerAndRepo(String ownersName, String repoName);
-
     @Query("SELECT * FROM repository_entity")
     List<RepositoryEntity> GetAll();
 

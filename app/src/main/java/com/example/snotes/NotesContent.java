@@ -14,7 +14,7 @@ public class NotesContent {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
-                List<RepositoryEntity> entities = NameDBSingelton.GetDB().getRepoDao().GetAll();
+                List<RepositoryEntity> entities = NameDBSingleton.GetDB().getRepoDao().GetAll();
 
                 for (RepositoryEntity entity : entities) {
                     addItem(createNoteItem(entity.ownersName, entity.repositoryName));

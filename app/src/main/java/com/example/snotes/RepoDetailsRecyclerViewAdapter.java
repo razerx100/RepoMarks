@@ -22,6 +22,10 @@ public class RepoDetailsRecyclerViewAdapter extends RecyclerView.Adapter<RepoDet
         this.mOnNoteListener = onNoteListener;
     }
 
+    public RepoContent.RepoItem GetValueAt(int index) {
+        return mValues.get(index);
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

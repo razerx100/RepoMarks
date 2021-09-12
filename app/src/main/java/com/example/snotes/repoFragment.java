@@ -18,7 +18,7 @@ import java.util.List;
 
 public class repoFragment extends Fragment implements RepoDetailsRecyclerViewAdapter.OnNoteListener {
     private RepoItemListBinding binding;
-    public static final String TAG = "com.example.snotes.MOISTUREING";
+    public static final String TAG = "RESURRECTION";
     private static final String ARG_COLUMN_COUNT = "column-count-2";
     private int mColumnCount = 1;
     private RepoContent repoContent;
@@ -63,16 +63,22 @@ public class repoFragment extends Fragment implements RepoDetailsRecyclerViewAda
 
     @Override
     public void onNoteClick(int position) {
-        Intent intent = new Intent(getActivity(), ReaderActivity.class);
-        String fileName = "";
-        intent.putExtra(TAG, fileName);
+        Intent intent;
+        RepoContent.RepoItem item = myAdapter.GetValueAt(position);
+        String[] itemData  = {item.repoName, item.fileName};
+
+        if (item.type.equals("dir"))
+            intent = new Intent(getActivity(), RepoDetailsActivity.class);
+        else {
+            intent = new Intent(getActivity(), ReaderActivity.class);
+            intent.putExtra(TAG, item.downloadLink);
+        }
+
+        intent.putExtra(notesFragment.TAG, itemData);
         startActivity(intent);
     }
 
-    public void ChangeItemList(List<String> fileNames) {
-        for(String fileName : fileNames)
-            repoContent.addItem(new RepoContent.RepoItem(fileName));
-
-        myAdapter.ChangeValues(repoContent.ITEMS);
+    public void ChangeItemList(List<RepoContent.RepoItem> repoData) {
+        myAdapter.ChangeValues(repoData);
     }
 }

@@ -1,18 +1,17 @@
 package com.example.snotes;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.example.snotes.databinding.ActivityReaderBinding;
 
 public class ReaderActivity extends AppCompatActivity {
@@ -26,8 +25,6 @@ public class ReaderActivity extends AppCompatActivity {
 
         Toolbar toolbar = binding.toolbarEditor;
         setSupportActionBar(toolbar);
-        ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
 
         accept_incoming_data();
     }
@@ -35,11 +32,31 @@ public class ReaderActivity extends AppCompatActivity {
     public void accept_incoming_data(){
         Intent intent = getIntent();
         if(intent.hasExtra(notesFragment.TAG)) {
-            String[] title_and_content = intent.getStringArrayExtra(notesFragment.TAG);
-            TextView content_editor = binding.textEditor;
+            String[] receivedData = intent.getStringArrayExtra(notesFragment.TAG);
+
             TextView title_editor = binding.titleEditor;
-            content_editor.setText(title_and_content[1]);
-            title_editor.setText(title_and_content[0]);
+            title_editor.setText(receivedData[1]);
+
+            SetBodyTextAsync(intent.getStringExtra(repoFragment.TAG));
         }
+    }
+
+    private void SetBodyTextAsync(String url) {
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        TextView textBody = binding.textEditor;
+                        textBody.setText(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {}
+                }
+        );
+
+        NetworkManagerSingleton.Get().AddToRequestQueue(stringRequest);
     }
 }

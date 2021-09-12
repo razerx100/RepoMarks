@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -16,6 +15,7 @@ import com.example.snotes.databinding.ActivityRepoDetailsBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,48 +35,48 @@ public class RepoDetailsActivity extends AppCompatActivity {
 
         Toolbar toolbar = binding.contentLayoutRepo.toolbarContent;
         setSupportActionBar(toolbar);
-
-        ActionBar ab = getSupportActionBar();
-        try {
-            ab.setDisplayHomeAsUpEnabled(true);
-        }
-        catch (NullPointerException e) {}
     }
 
     public void ProcessReceivedData(){
         Intent intent = getIntent();
         if(intent.hasExtra(notesFragment.TAG)) {
-            String[] ownerAndRepo = intent.getStringArrayExtra(notesFragment.TAG);
+            String[] receivedData = intent.getStringArrayExtra(notesFragment.TAG);
 
             repoFragment fragment = (repoFragment)
                     getSupportFragmentManager().findFragmentById(R.id.repo_fragment);
 
-            binding.contentLayoutRepo.toolbarContent.setTitle(ownerAndRepo[1]);
+            binding.contentLayoutRepo.toolbarContent.setTitle(receivedData[0] + "/" + receivedData[1]);
 
-            String url = "https://api.github.com/repos/"
-                    + ownerAndRepo[0] + "/"
-                    + ownerAndRepo[1] + "/contents/";
+            String url = getString(R.string.api_url)
+                    + receivedData[0] + "/contents/" + receivedData[1];
 
             JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(
                     Request.Method.GET, url, null,
                     new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {
-                            List<String> fileNames = new ArrayList<>();
+                            List<RepoContent.RepoItem> repoData = new ArrayList<>();
 
                             for (int i = 0; i < response.length(); ++i) {
                                 try {
-                                    fileNames.add(response.getJSONObject(i).getString("path"));
-                                } catch (JSONException e) {
-                                }
+                                    JSONObject obj = response.getJSONObject(i);
+                                    String fileName = obj.getString("path");
+
+                                    repoData.add(RepoContent.createNoteItem(
+                                            fileName,
+                                            obj.getString("type"),
+                                            receivedData[0],
+                                            obj.getString("download_url")
+                                    ));
+                                } catch (JSONException e) {}
                             }
 
-                            fragment.ChangeItemList(fileNames);
+                            fragment.ChangeItemList(repoData);
                         }
                     },
                     new Response.ErrorListener() {
                         @Override
-                        public void onErrorResponse(VolleyError error) { }
+                        public void onErrorResponse(VolleyError error) {}
                     }
             );
 

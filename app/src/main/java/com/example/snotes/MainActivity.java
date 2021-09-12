@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        NameDBSingelton.InitDB(getApplicationContext());
+        NameDBSingleton.InitDB(getApplicationContext());
         NetworkManagerSingleton.Init(getApplicationContext());
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
