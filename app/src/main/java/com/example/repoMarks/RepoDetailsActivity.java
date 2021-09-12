@@ -1,4 +1,4 @@
-package com.example.snotes;
+package com.example.repoMarks;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.example.snotes.databinding.ActivityRepoDetailsBinding;
+import com.example.repoMarks.databinding.ActivityRepoDetailsBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;

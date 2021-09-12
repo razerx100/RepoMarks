@@ -1,4 +1,4 @@
-package com.example.snotes;
+package com.example.repoMarks;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,7 +12,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.snotes.databinding.ActivityReaderBinding;
+import com.example.repoMarks.databinding.ActivityReaderBinding;
 
 public class ReaderActivity extends AppCompatActivity {
     private ActivityReaderBinding binding;

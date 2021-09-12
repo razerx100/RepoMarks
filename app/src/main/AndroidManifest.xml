@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.snotes">
+    package="com.example.repoMarks">
 
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <application
@@ -10,13 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".EditorActivity"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".ReaderActivity"
-            android:parentActivityName=".RepoDetailsActivity"/>
-        <activity android:name=".RepoDetailsActivity"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.repoMarks.EditorActivity"
+            android:parentActivityName="com.example.repoMarks.MainActivity"/>
+        <activity android:name="com.example.repoMarks.ReaderActivity"
+            android:parentActivityName="com.example.repoMarks.RepoDetailsActivity"/>
+        <activity android:name="com.example.repoMarks.RepoDetailsActivity"
+            android:parentActivityName="com.example.repoMarks.MainActivity"/>
+        <activity android:name="com.example.repoMarks.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package com.example.snotes;
+package com.example.repoMarks;
 
 import androidx.room.Dao;
 import androidx.room.Query;

@@ -1,4 +1,4 @@
-package com.example.snotes;
+package com.example.repoMarks;
 
 import android.view.LayoutInflater;
 import android.view.View;

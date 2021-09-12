@@ -1,4 +1,4 @@
-package com.example.snotes;
+package com.example.repoMarks;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -19,7 +19,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.snotes.databinding.ActivityEditorBinding;
+import com.example.repoMarks.databinding.ActivityEditorBinding;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 

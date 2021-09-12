@@ -1,4 +1,4 @@
-package com.example.snotes;
+package com.example.repoMarks;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.snotes.databinding.ActivityMainBinding;
+import com.example.repoMarks.databinding.ActivityMainBinding;
 import com.google.android.material.appbar.AppBarLayout;
 
 public class MainActivity extends AppCompatActivity {

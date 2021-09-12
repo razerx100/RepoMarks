@@ -1,4 +1,4 @@
-package com.example.snotes;
+package com.example.repoMarks;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
