@@ -37,11 +37,10 @@ public class EditorActivity extends AppCompatActivity {
 
         Toolbar toolbar = binding.toolbarEditor;
         setSupportActionBar(toolbar);
+
         ActionBar ab = getSupportActionBar();
-        try {
+        if(ab != null)
             ab.setDisplayHomeAsUpEnabled(true);
-        }
-        catch (NullPointerException e) {}
     }
 
     @Override
@@ -83,7 +82,7 @@ public class EditorActivity extends AppCompatActivity {
     }
 
     private void CheckRepoAndOwner() {
-        String url = "https://api.github.com/repos/"
+        String url = getString(R.string.api_url)
                 + FormatData(binding.titleEditor.getText()) + "/"
                 + FormatData(binding.textEditor.getText());
 

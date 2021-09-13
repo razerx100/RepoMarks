@@ -1,5 +1,7 @@
 package com.example.repoMarks;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,7 @@ public class RepoContent {
             this.downloadLink = downloadLink;
         }
 
+        @NonNull
         @Override
         public String toString() {
             return fileName;

@@ -3,6 +3,8 @@ package com.example.repoMarks;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -54,6 +56,7 @@ public class NotesContent {
             }
         };
 
+        @NonNull
         @Override
         public String toString() {
             return title;

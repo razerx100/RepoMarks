@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -35,6 +36,10 @@ public class RepoDetailsActivity extends AppCompatActivity {
 
         Toolbar toolbar = binding.contentLayoutRepo.toolbarContent;
         setSupportActionBar(toolbar);
+
+        ActionBar ab = getSupportActionBar();
+        if(ab != null)
+            ab.setDisplayHomeAsUpEnabled(true);
     }
 
     public void ProcessReceivedData(){
@@ -71,7 +76,8 @@ public class RepoDetailsActivity extends AppCompatActivity {
                                 } catch (JSONException e) {}
                             }
 
-                            fragment.ChangeItemList(repoData);
+                            if(fragment != null)
+                                fragment.ChangeItemList(repoData);
                         }
                     },
                     new Response.ErrorListener() {

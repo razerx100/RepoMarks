@@ -68,11 +68,15 @@ public class MainActivity extends AppCompatActivity {
         int item_id = item.getItemId();
         notesFragment fragment = (notesFragment) getSupportFragmentManager().findFragmentById(R.id.notes_fragment);
         if(item_id == R.id.sort_action_alpha){
-            fragment.update_list(0);
+            if(fragment != null)
+                fragment.update_list(0);
+
             return true;
         }
         else if(item_id == R.id.sort_action_date){
-            fragment.update_list(1);
+            if(fragment != null)
+                fragment.update_list(1);
+
             return true;
         }
         else {

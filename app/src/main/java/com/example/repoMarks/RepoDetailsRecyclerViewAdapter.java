@@ -59,6 +59,7 @@ public class RepoDetailsRecyclerViewAdapter extends RecyclerView.Adapter<RepoDet
             view.setOnClickListener(this);
         }
 
+        @NonNull
         @Override
         public String toString() {
             return super.toString() + " '" + m_fileNameView.getText() + "'";
